@@ -1,0 +1,99 @@
+body {
+    background-color: #636363;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 0;
+}
+
+.main {
+    padding: 30px;
+}
+
+.title {
+    font-family: 'Anton', 'sans-serif';
+    text-transform: uppercase;
+    padding: 10px 15px;
+    color: white;
+    background: crimson;
+}
+
+.fundraiser-list {
+    font-family: 'Abel', 'sans-serif';
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.fa-star, .fa-star-half {
+    color: #f4d142;
+}
+
+.fundraiser-list .headings {
+    font-family: 'Arial', 'sans-serif';
+    padding: 0 260px 0 50px;
+    font-size: 15px;
+    margin-bottom: 7px;
+    margin-top: 7px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.heading-name {
+    text-align: left;
+}
+
+.main-list {
+    border: solid #c1c1c1 1px;
+    padding: 10px 10px 10px 30px;
+    -webkit-box-shadow: 4px 4px 5px 0 rgba(0,0,0,0.31);
+    -moz-box-shadow: 4px 4px 5px 0 rgba(0,0,0,0.31);
+    box-shadow: 4px 4px 5px 0 rgba(0,0,0,0.31);
+}
+
+.fundraiser-item {
+    margin: 20px 0;
+}
+
+.rating .rating-text {
+    font-size: 11px;
+    font-family: 'Arial', 'sans-serif';
+    margin-left: 6px;
+}
+
+.pagination-links {
+    float: right;
+    margin-top: 20px
+}
+
+.pagination-link {
+    margin: 10px 2px;
+    padding: 4px 8px;
+    border: solid #5a6268 1px;
+    border-radius: 8px;
+    background-color: #e9ecef;
+}
+
+.review-section {
+    margin: 100px 0 80px;
+    background-color: #e9ecef;
+    border: #5a6268 1px solid;
+    padding: 20px;
+}
+
+.review-section .review-form {
+    margin-top: 30px;
+}
+
+.footer {
+    background-color: #761b18;
+    color: #ffffff;
+    padding: 16px 0 1px;
+    text-align: center;
+}
+
+.error-message {
+    color: #ff0000;
+    font-weight: bold;
+    margin-left: 10px;
+}

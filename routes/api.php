@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/ratings', ['uses' => 'RatingsController@createNew', 'as' => 'create_rating']);
+
+Route::get('/fundraisers', ['uses' => 'FundRaisersController@index', 'as' => 'get_fundraisers']);

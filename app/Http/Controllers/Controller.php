@@ -10,4 +10,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    // return error
+    protected function errorJSON($e)
+    {
+
+        return response()->json(['response' => 'error', 'message' => $e->getMessage()]);
+    }
+
 }
