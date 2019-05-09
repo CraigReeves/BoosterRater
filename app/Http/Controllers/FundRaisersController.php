@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class FundRaisersController extends Controller
 {
+    /**
+     * Displays all fundraisers, paginated
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         try {
@@ -36,6 +41,30 @@ class FundRaisersController extends Controller
         }
     }
 
+    /**
+     * provides detailed page for fundraiser
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Request $request)
+    {
+        // get fundraiser
+        $fund_raiser = FundRaiser::findOrFail($request['id']);
+
+        // get fundraiser ratings
+        $ratings = $fund_raiser->ratings()->limit(10)->orderBy('created_at', 'desc')->paginate(8);
+
+        $ratings->withPath(route('fundraiser') . '?id=' . $fund_raiser->id);
+
+        return view('fundraiser', compact('fund_raiser', 'ratings'));
+    }
+
+    /**
+     * gets the total number of pages for fundraisers
+     * @param $total_results
+     * @param $per_page
+     * @return float
+     */
     private function getTotalPages($total_results, $per_page)
     {
         // get a rough estimate first...

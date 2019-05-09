@@ -31,7 +31,8 @@ const app = new Vue({
         page: 1,
         num_pages: 0,
         fund_raisers: [],
-        total_fund_raisers: 0
+        total_fund_raisers: 0,
+        show_fundraiser_link: window.page.route_show_fundraiser
     },
     created: function() {
 
@@ -63,7 +64,6 @@ const app = new Vue({
                     email: this.email.trim(),
                     rating: this.rating,
                     review: this.review.trim(),
-                    _token: window.page.csrf_token
                 });
 
                 if (result.data.response === "ok") {
@@ -77,12 +77,10 @@ const app = new Vue({
                     this.errors.form = result.data.message;
                     setTimeout(() => this.errors.form = '', 3000)
                 }
-
             }
         },
 
         populateNameField(e, fund_raiser) {
-            e.preventDefault();
             this.fund_raiser_name = fund_raiser.name;
         },
 
@@ -96,6 +94,56 @@ const app = new Vue({
                 .catch((err) => {
                     alert(err);
                 })
+        },
+
+        renderStarRating(rating) {
+            if (rating < 1.5) {
+                return `<span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`;
+            }
+            if (rating >= 1.5 && rating < 2) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
+            }
+            if (rating >= 2 && rating < 2.5) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
+            }
+            if (rating >= 2.5 && rating < 3) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
+            }
+            if (rating >= 3 && rating < 3.5) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
+            }
+            if (rating >= 3.5 && rating < 4) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
+            }
+            if (rating >= 4 && rating < 4.5) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
+            }
+            if (rating >= 4.5 && rating < 5) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
+            }
+            if (rating >= 5) {
+                return `<span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
+            }
         },
 
         validateForm: function() {
@@ -162,59 +210,6 @@ const app = new Vue({
             e.preventDefault();
             this.page--;
             this.loadFundRaisers();
-        },
-
-        renderStarRating: function(rating) {
-
-            if (rating < 1.5) {
-                return `<span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`;
-            }
-            if (rating >= 1.5 && rating < 2) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
-            }
-            if (rating >= 2 && rating < 2.5) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
-            }
-            if (rating >= 2.5 && rating < 3) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
-            }
-            if (rating >= 3 && rating < 3.5) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
-            }
-            if (rating >= 3.5 && rating < 4) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
-            }
-            if (rating >= 4 && rating < 4.5) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
-            }
-            if (rating >= 4.5 && rating < 5) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star-half"></span><span class="rating-text">(${rating})</span>`
-            }
-            if (rating >= 5) {
-                return `<span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span><span class="rating-text">(${rating})</span>`
-            }
         }
-
-
     }
 });

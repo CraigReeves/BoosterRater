@@ -69,7 +69,8 @@ class RatingsController extends Controller
             $fund_raiser->updateAverageRating();
 
             DB::commit();
-            return response()->json(['response' => 'ok']);
+            return response()->json(['response' => 'ok', 'rating_id' => $rating->id,
+                'fund_raiser_id' => $fund_raiser->id, 'user_id' => $user->id]);
 
         } catch (Exception $e) {
 

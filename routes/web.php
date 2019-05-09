@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::group(['middleware' => ['web']], function () {
+
+    Route::post('/ratings', ['uses' => 'RatingsController@createNew', 'as' => 'create_rating']);
+
+    Route::get('/fundraisers', ['uses' => 'FundRaisersController@index', 'as' => 'get_fundraisers']);
+
+    Route::get('/fundraisers/show', ['uses' => 'FundRaisersController@show', 'as' => 'fundraiser']);
+});

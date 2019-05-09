@@ -1,8 +1,10 @@
 @extends('default')
 @section('script_vars')
     <script>
+        window.page = window.page || {};
         window.page.route_create_rating = '{{ route('create_rating') }}';
         window.page.route_get_fundraisers = '{{ route('get_fundraisers') }}';
+        window.page.route_show_fundraiser = '{{ route('fundraiser') }}';
     </script>
 @endsection
 @section('title', 'Fundraser Ratings')
@@ -12,20 +14,11 @@
         <div class="row no-gutters">
             <div class="col-sm-12">
                 <div class="main-list">
-                    <div class="row headings">
-                        <div class="col-sm-4 heading-name">
-                            Name
-                        </div>
-                        <div class="col-sm-3 heading-rating">
-                            Rating
-                        </div>
-                    </div>
-
                     <div v-for="fund_raiser in fund_raisers" class="row no-gutters fundraiser-item">
-                        <div v-text="fund_raiser.name" class="col-sm-4 fundraiser-title"></div>
+                        <a v-bind:href="show_fundraiser_link + '?id=' + fund_raiser.id" v-text="fund_raiser.name" class="col-sm-4 fundraiser-title"></a>
                         <div v-html="renderStarRating(fund_raiser.average_rating)" class="col-sm-3 rating"></div>
                         <div class="col-sm-5">
-                            <a v-on:click="populateNameField($event, fund_raiser)" href="#">Add Review</a>
+                            <a v-on:click="populateNameField($event, fund_raiser)" href="#fund_raiser_section">Add Review</a>
                         </div>
                     </div>
                 </div>
@@ -42,6 +35,7 @@
         <div v-if="congrats" class="alert alert-success">
             Your review has been submitted!
         </div>
+        <a name="fund_raiser_section"></a>
         <form v-on:submit="submitReview($event)" class="review-form">
             <div class="form-group">
                 <label for="fund_raiser_name">Fundraiser Name</label>

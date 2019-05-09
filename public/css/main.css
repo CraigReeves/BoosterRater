@@ -97,3 +97,43 @@ body {
     font-weight: bold;
     margin-left: 10px;
 }
+
+.fundraiser-stat {
+    padding-left: 20px;
+}
+
+.fundraiser-stat-name {
+    font-weight: bold;
+}
+
+.fundraiser-review-section {
+    margin-top: 40px;
+}
+
+.fundraiser-review-section h4 {
+    margin-bottom: 15px;
+}
+
+.review {
+    margin: 0 0 30px;
+}
+
+.reviews-body {
+    padding-left: 20px;
+}
+
+.review-text {
+    font-style: italic;
+    font-size: 14px;
+    width: 50%;
+}
+
+.review-score {
+    font-weight: bold;
+}
+
+.review-date {
+    font-style: italic;
+    color: #6c757d;
+    font-size: 14px;
+}
